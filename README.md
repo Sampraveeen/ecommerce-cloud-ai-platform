@@ -1,8 +1,9 @@
-# Ecommerce Cloud + AI Platform (Mini Project - Scenario 1)
+Ecommerce Cloud + AI Platform – Mini Project (Scenario 1)
 
 A **scalable cloud-based e-commerce demo** deployed on **AWS EC2**, with **Python data cleaning & visualization**, and **documented security** (firewall + encryption). Built as a fast, portfolio-ready project.
 
-## ✨ What this delivers (1‑hour version)
+## ✨ What this delivers
+
 - EC2 instance (Ubuntu) + Apache web server
 - Dataset loaded with **Pandas** (simulating DB import)
 - **Data cleaning** + **Matplotlib plots** saved to `ai-analysis/outputs/`

@@ -1,124 +1,113 @@
-Ecommerce Cloud + AI Platform – Mini Project (Scenario 1)
+# E-Commerce Cloud AI Platform
 
-A **scalable cloud-based e-commerce demo** deployed on **AWS EC2**, with **Python data cleaning & visualization**, and **documented security** (firewall + encryption). Built as a fast, portfolio-ready project.
+Developed by: **Samiksha P**  
+Sri Manakula Vinayagar Engineering College, Puducherry  
 
-## ✨ What this delivers
+---
 
-- EC2 instance (Ubuntu) + Apache web server
-- Dataset loaded with **Pandas** (simulating DB import)
-- **Data cleaning** + **Matplotlib plots** saved to `ai-analysis/outputs/`
-- **Security**: security group rules + HTTPS setup guide (documented)
-- Clean, professional repository structure
+## 📘 Project Overview
 
-## 🧱 Repo Structure
-```
+This project demonstrates a cloud-based **E-Commerce AI Platform** designed to showcase scalable infrastructure, data processing, and AI-driven decision support.  
+The goal is to host an e-commerce system on a virtualized cloud environment integrated with data analytics and intelligent load balancing mechanisms.
+
+Although the current version focuses on local simulation and architectural design, the project structure and codebase are fully cloud-ready for deployment on AWS.
+
+---
+
+## ☁️ Key Features
+
+- Virtual machine setup (simulated EC2 environment)
+- Sample dataset imported into a SQL database (SQLite)
+- Basic data cleaning and preprocessing using **Pandas**
+- Data visualization using **Matplotlib** and **Seaborn**
+- AI module integration using **Scikit-learn** (for customer behavior prediction)
+- Encryption logic for secure data handling (simulated at rest and in transit)
+- Well-structured folder layout ready for AWS deployment
+
+---
+
+## ⚙️ Technology Stack
+
+| Category | Tools & Technologies |
+|-----------|----------------------|
+| Programming Language | Python 3 |
+| Data Processing | Pandas, NumPy |
+| Visualization | Matplotlib, Seaborn |
+| Machine Learning | Scikit-learn |
+| Database | SQLite (can be extended to AWS RDS/MySQL) |
+| Cloud Design (Planned) | AWS EC2, S3, RDS |
+| Security | Simulated encryption using hashlib / Fernet |
+
+---
+
+## 🧠 AI Component
+
+The AI module, **smv_predictor_v1**, analyzes sample e-commerce data to predict:
+- Customer purchase likelihood  
+- Price sensitivity  
+- Product category recommendations  
+
+Machine learning algorithms such as Logistic Regression and Decision Tree are used for model training and evaluation.
+
+---
+
+## 🗂️ Folder Structure
+
 ecommerce-cloud-ai-platform/
-├── README.md
-├── scripts/
-│   └── server-setup.sh
-├── ai-analysis/
-│   ├── analysis.py
-│   └── requirements.txt
-├── data/
-│   └── sales.csv
-└── security/
-    ├── firewall-rules.md
-    └── encryption_guide.md
-```
+│
+├── data/ 
+├── notebooks/ 
+├── models/ 
+├── scripts/ 
+├── requirements.txt 
+└── README.md 
 
 ---
 
-## 🚀 Step 1 — Launch EC2 (Ubuntu, t2.micro)
-1. Go to **AWS Console → EC2 → Launch instance**.
-2. Name: `ecommerce-cloud-ai` • AMI: **Ubuntu 22.04** • Type: **t2.micro (free tier)**.
-3. **Key pair**: create or use existing (download `.pem`).
-4. **Security group rules**:
-   - Inbound: **22 (SSH)** from *My IP*, **80 (HTTP)** from *Anywhere*, **443 (HTTPS)** from *Anywhere*.
-5. Launch → wait for `running` status.
+## 📊 Visual Insights
 
-### SSH into instance
-```bash
-chmod 400 your-key.pem
-ssh -i your-key.pem ubuntu@EC2_PUBLIC_IP
-```
+The dataset was cleaned and analyzed using Pandas and visualized with Matplotlib & Seaborn.  
+Key trends like **customer purchase frequency**, **average basket value**, and **price sensitivity** were observed.
 
 ---
 
-## 🌐 Step 2 — Install a Web Server (Apache)
-On the EC2 instance:
-```bash
-curl -O https://raw.githubusercontent.com/placeholder/placeholder/main/server-setup.sh # (or copy from scripts/server-setup.sh)
-# If copying manually, paste the script content and run:
-chmod +x server-setup.sh && sudo ./server-setup.sh
-```
+## 🔒 Security and Encryption
 
-If you don’t want to copy, just run these directly:
-```bash
-sudo apt update -y
-sudo apt install -y apache2
-sudo systemctl enable --now apache2
-# (Optional) UFW
-sudo ufw allow 'Apache Full' || true
-sudo ufw allow OpenSSH || true
-echo "Apache installed. Visit: http://EC2_PUBLIC_IP"
-```
-
-Open a browser: `http://EC2_PUBLIC_IP` → You should see the **Apache default page** ✅
+Encryption has been simulated for both **data-at-rest** and **data-in-transit** using Python’s built-in cryptography functions.  
+Future deployment on AWS will apply **KMS (Key Management Service)** and **SSL/TLS** for full-scale encryption.
 
 ---
 
-## 🧪 Step 3 — (Fast) Data Cleaning + Visualization
-Locally (or on EC2), run the Python script:
-```bash
-cd ai-analysis
-python3 -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
-python analysis.py
-```
-Outputs are saved to: `ai-analysis/outputs/`:
-- `sales_by_category.png`
-- `sales_trend.png`
-- `cleaned_sales.csv` (post-cleaning data)
+## 🚀 Future Cloud Integration (Planned)
 
-> This **simulates “dataset import to DB”** for the 1‑hour version. If you want a real DB later, swap in MySQL/Postgres and load `cleaned_sales.csv`.
+In the extended version of this project:
+- A cloud EC2 instance (`smv_data-ai-node`) will be used to deploy the application.  
+- Data will be stored securely in **AWS RDS (PostgreSQL)**.  
+- S3 will be used to host static files and datasets.  
+- A CI/CD pipeline will automate deployment.  
+- The AI model will be containerized using **Docker** and integrated for real-time prediction.  
 
 ---
 
-## 🔐 Step 4 — Security (what to show in report)
-- **Firewall rules** (Security Groups): see `security/firewall-rules.md`
-- **Encryption at rest & in transit**: see `security/encryption_guide.md`
-  - Quick: enable **HTTPS** on Apache with Let’s Encrypt or a self‑signed cert.
-  - For DB later: use RDS with “Enable encryption” checked.
+## 🧩 What I Learned
+
+- Setting up a simulated cloud-ready Python environment  
+- Structuring projects for data pipeline and AI integration  
+- Implementing data visualization and ML algorithms  
+- Designing a secure, scalable architecture for cloud migration  
 
 ---
 
-## 📦 Step 5 — Push to GitHub (commands)
-```bash
-git init
-git add .
-git commit -m "Initial commit: AWS + AI mini project"
-git branch -M main
-# Create an empty repo on GitHub named: ecommerce-cloud-ai-platform
-git remote add origin https://github.com/YOUR_USERNAME/ecommerce-cloud-ai-platform.git
-git push -u origin main
-```
+## 🏁 Conclusion
+
+This project serves as a foundational prototype for an **AI-driven e-commerce platform** that combines data analytics, security, and scalability.  
+It demonstrates how local simulation can seamlessly evolve into a complete AWS deployment.
 
 ---
 
-## 📝 What to Screenshot for the Report
-- EC2 instance page (running)
-- Security group inbound rules
-- Apache default page in browser
-- Plots saved by `analysis.py`
+## 🗒️ Repository
+
+GitHub Repository: [https://github.com/Sampraveeen/ecommerce-cloud-ai-platform](https://github.com/Sampraveeen/ecommerce-cloud-ai-platform)
 
 ---
-
-## 📈 Future Improvements (nice to mention in interview)
-- Swap CSV → **RDS MySQL** and connect from Python
-- Add **Flask** landing page on Apache (Reverse Proxy)
-- Add **ALB (Application Load Balancer)** in front of EC2
-- Add **simple sales forecasting** with scikit‑learn
-
----
-
-**Author:** Samiksha P • *Scenario 1 mini‑project (Placement)*
+This repository was developed for academic learning and cloud-AI integration demonstration purposes.
